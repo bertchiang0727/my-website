@@ -59,11 +59,11 @@ body {
   gap: 25px;
 }
 .profile-img {
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #2c3e50;
+  object-fit: cover;       
+  object-position: center top;   
 }
 .profile-info h2 {
   margin-bottom: 8px;
