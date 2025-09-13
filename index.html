@@ -7,78 +7,81 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Sidebar Navigation -->
-  <aside class="sidebar">
-    <h2>Navigation</h2>
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="container">
+      <h1 class="logo">Chen-Yu Chiang</h1>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Profile Card -->
+  <section class="profile-card">
+    <img src="images/profile.jpg" alt="Chen-Yu Chiang" class="profile-img">
+    <div class="profile-info">
+      <h2>Chen-Yu Chiang</h2>
+      <p>Graduate Student in Mechanical Engineering, UC San Diego</p>
+      <p class="tagline">Robotics | Mechatronics | Intelligent Systems</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="card" id="about">
+    <h2>About Me</h2>
+    <p>
+      I am pursuing my Master's degree in Mechanical Engineering at UC San Diego. 
+      My research interests lie in robotics, mechatronics, and intelligent systems. 
+      I am passionate about integrating mechanical design, firmware, and AI to develop 
+      robotic platforms that solve real-world challenges.
+    </p>
+  </section>
+
+  <!-- Experience -->
+  <section class="card" id="experience">
+    <h2>My Experience</h2>
+
+    <h3>Software Design</h3>
     <ul>
-      <li><a href="#about">About Me</a></li>
-      <li><a href="#software">Software Design</a></li>
-      <li><a href="#mechanical">Mechanical Design</a></li>
-      <li><a href="#firmware">Firmware Design</a></li>
-      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="experience/ai-assistant.html" class="exp-link">AI Assistant with Rasa</a></li>
+      <li><a href="experience/simulation-framework.html" class="exp-link">Satellite Communication Simulation</a></li>
     </ul>
-  </aside>
 
-  <!-- Main Content -->
-  <main class="content">
-    <!-- Hero with Photo -->
-    <section class="profile card" id="home">
-      <img src="images/profile.jpg" alt="Chen-Yu Chiang" class="profile-img">
-      <div class="profile-text">
-        <h1>Chen-Yu Chiang</h1>
-        <p>Graduate Student in Mechanical Engineering<br>UC San Diego</p>
-        <p class="tagline">Robotics | Mechatronics | Intelligent Systems</p>
-      </div>
-    </section>
+    <h3>Mechanical Design</h3>
+    <ul>
+      <li><a href="experience/robotic-arm.html" class="exp-link">Robotic Arm (4-DOF)</a></li>
+      <li><a href="experience/competition-mech.html" class="exp-link">Competition Mechanisms</a></li>
+    </ul>
 
-    <!-- About -->
-    <section class="card" id="about">
-      <h2>About Me</h2>
-      <p>
-        I am pursuing my Master's degree in Mechanical Engineering at UC San Diego. 
-        My research interests lie in robotics, mechatronics, and intelligent systems. 
-        I am passionate about integrating mechanical design, firmware, and AI to develop 
-        robotic platforms that solve real-world challenges.
-      </p>
-    </section>
+    <h3>Firmware Design</h3>
+    <ul>
+      <li><a href="experience/motor-control.html" class="exp-link">Motor Control</a></li>
+      <li><a href="experience/embedded-systems.html" class="exp-link">Embedded Systems</a></li>
+    </ul>
 
-    <!-- Experience Categories -->
-    <section class="card" id="software">
-      <h2>Software Design</h2>
-      <ul>
-        <li><a href="experience/ai-assistant.html" class="exp-link">AI Assistant with Rasa</a></li>
-        <li><a href="experience/simulation-framework.html" class="exp-link">Satellite Communication Simulation</a></li>
-      </ul>
-    </section>
+    <h3>Leadership</h3>
+    <ul>
+      <li><a href="experience/robotics-club.html" class="exp-link">Robotics Club Leader</a></li>
+      <li><a href="experience/project-management.html" class="exp-link">Project Management</a></li>
+    </ul>
+  </section>
 
-    <section class="card" id="mechanical">
-      <h2>Mechanical Design</h2>
-      <ul>
-        <li><a href="experience/robotic-arm.html" class="exp-link">Robotic Arm (4-DOF)</a></li>
-        <li><a href="experience/competition-mech.html" class="exp-link">Competition Mechanisms</a></li>
-      </ul>
-    </section>
+  <!-- Contact -->
+  <section class="card" id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:chenyu@email.com">chenyu@email.com</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/chenyu" target="_blank">linkedin.com/in/chenyu</a></p>
+    <p>GitHub: <a href="https://github.com/chenyu" target="_blank">github.com/chenyu</a></p>
+  </section>
 
-    <section class="card" id="firmware">
-      <h2>Firmware Design</h2>
-      <ul>
-        <li><a href="experience/motor-control.html" class="exp-link">Motor Control</a></li>
-        <li><a href="experience/embedded-systems.html" class="exp-link">Embedded Systems</a></li>
-      </ul>
-    </section>
-
-    <section class="card" id="leadership">
-      <h2>Leadership</h2>
-      <ul>
-        <li><a href="experience/robotics-club.html" class="exp-link">Robotics Club Leader</a></li>
-        <li><a href="experience/project-management.html" class="exp-link">Project Management</a></li>
-      </ul>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <p>© 2025 Chen-Yu Chiang | <a href="mailto:chenyu@email.com">Contact</a></p>
-    </footer>
-  </main>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Chen-Yu Chiang | Portfolio</p>
+  </footer>
 </body>
 </html>

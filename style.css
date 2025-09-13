@@ -6,47 +6,77 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 body {
-  display: flex;
   background: #f8f9fb;
   color: #2c3e50;
   line-height: 1.6;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 220px;
+/* Topbar */
+.topbar {
   background: #2c3e50;
   color: white;
-  height: 100vh;
-  padding: 30px 20px;
-  position: fixed;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-.sidebar h2 {
+.topbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.topbar .logo {
   font-size: 1.2rem;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #4a5568;
-  padding-bottom: 8px;
+  font-weight: bold;
 }
-.sidebar ul {
+.topbar nav ul {
   list-style: none;
+  display: flex;
+  gap: 20px;
 }
-.sidebar ul li {
-  margin: 10px 0;
-}
-.sidebar ul li a {
+.topbar nav a {
+  color: white;
   text-decoration: none;
-  color: #e0e0e0;
   transition: color 0.2s;
 }
-.sidebar ul li a:hover {
+.topbar nav a:hover {
   color: #4fc3f7;
 }
 
-/* Main Content */
-.content {
-  margin-left: 240px;
-  padding: 30px;
-  max-width: 900px;
+/* Profile Card */
+.profile-card {
+  background: white;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2c3e50;
+}
+.profile-info h2 {
+  margin-bottom: 8px;
+  color: #1e3c72;
+}
+.profile-info p {
+  margin: 4px 0;
+  color: #555;
+}
+.tagline {
+  margin-top: 6px;
+  font-style: italic;
+  color: #2a5298;
 }
 
 /* Card Layout */
@@ -55,7 +85,8 @@ body {
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-  margin-bottom: 30px;
+  margin: 20px auto;
+  max-width: 800px;
 }
 .card h2 {
   margin-bottom: 15px;
@@ -63,32 +94,10 @@ body {
   padding-bottom: 6px;
   color: #1e3c72;
 }
-
-/* Profile Section */
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.profile-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #2c3e50;
-}
-.profile-text h1 {
-  font-size: 1.8rem;
-  margin-bottom: 6px;
-}
-.profile-text p {
-  font-size: 1rem;
-  color: #555;
-}
-.tagline {
-  margin-top: 6px;
-  font-style: italic;
-  color: #1e3c72;
+.card h3 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #2a5298;
 }
 
 /* Experience Links */
@@ -114,10 +123,6 @@ footer {
   padding: 15px;
   background: #2c3e50;
   color: white;
-  border-radius: 8px;
+  margin-top: 30px;
   font-size: 0.9rem;
-}
-footer a {
-  color: #4fc3f7;
-  text-decoration: none;
 }
