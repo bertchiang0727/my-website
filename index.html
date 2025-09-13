@@ -7,133 +7,48 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Hero Section -->
+  <!-- Hero -->
   <header class="hero">
     <div class="hero-content">
-      <h1>Hello, I'm Chen-Yu Chiang 👋</h1>
-      <p>A Mechanical Engineering graduate student passionate about Robotics & AI</p>
+      <h1>Chen-Yu Chiang</h1>
+      <p>Graduate Student in Mechanical Engineering | Robotics & Intelligent Systems</p>
     </div>
   </header>
 
-  <!-- Main Content -->
+  <!-- About Me -->
   <main class="container">
-    <!-- About Me -->
     <section class="card" id="about">
-      <h2>👨‍💻 About Me</h2>
+      <h2>About Me</h2>
       <p>
         I am pursuing my Master's degree in Mechanical Engineering at UC San Diego. 
         My focus lies in robotics, mechatronics, and intelligent systems. 
-        I am passionate about building machines that merge mechanical design, 
-        control systems, and artificial intelligence to solve real-world problems.
+        I am passionate about integrating mechanical design, firmware, and AI 
+        to develop innovative robotic systems.
       </p>
     </section>
 
     <!-- My Experience -->
     <section class="card" id="experience">
-      <h2>📌 My Experience</h2>
+      <h2>My Experience</h2>
 
-      <!-- Software Design -->
       <div class="experience-category">
-        <h3>💻 Software Design</h3>
+        <h3>Software Design</h3>
         <ul>
-          <li>
-            <button class="exp-btn">AI Assistant with Rasa</button>
-            <div class="exp-content">
-              Built an AI assistant using Rasa, handling 100+ queries daily with 90% accuracy. 
-              Designed a web UI to improve adoption rate by 30%.
-            </div>
-          </li>
-          <li>
-            <button class="exp-btn">Simulation Framework</button>
-            <div class="exp-content">
-              Developed a satellite communication simulation framework with ns-3, focusing on routing and scheduling algorithms.
-            </div>
-          </li>
+          <li><a href="experience/ai-assistant.html" class="exp-link">AI Assistant with Rasa</a></li>
         </ul>
       </div>
 
-      <!-- Mechanical Design -->
       <div class="experience-category">
-        <h3>⚙️ Mechanical Design</h3>
+        <h3>Mechanical Design</h3>
         <ul>
-          <li>
-            <button class="exp-btn">Robotic Arm (4-DOF)</button>
-            <div class="exp-content">
-              Designed and built a 4-DOF robotic arm with a three-jaw suction gripper, 
-              improving manipulation efficiency by 40%.
-            </div>
-          </li>
-          <li>
-            <button class="exp-btn">Competition Mechanisms</button>
-            <div class="exp-content">
-              Led the design of task-specific mechanisms in robotics competitions, 
-              integrating CAD design, 3D printing, and CNC machining.
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Firmware Design -->
-      <div class="experience-category">
-        <h3>🔌 Firmware Design</h3>
-        <ul>
-          <li>
-            <button class="exp-btn">Motor Control</button>
-            <div class="exp-content">
-              Implemented PID control and motor driver circuits for humanoid robot balance and gait control.
-            </div>
-          </li>
-          <li>
-            <button class="exp-btn">Embedded Systems</button>
-            <div class="exp-content">
-              Designed custom PCBs to reduce wiring risk and improve maintainability in Eurobot 2023 competition robots.
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Leadership -->
-      <div class="experience-category">
-        <h3>👥 Leadership</h3>
-        <ul>
-          <li>
-            <button class="exp-btn">Robotics Club Leader</button>
-            <div class="exp-content">
-              Directed 60+ members across hardware and software teams. 
-              Coordinated task allocation and integration, leading to Top 5 finish in Eurobot 2024.
-            </div>
-          </li>
-          <li>
-            <button class="exp-btn">Project Manager</button>
-            <div class="exp-content">
-              Streamlined workflows, reducing design iteration cycles by 30%. 
-              Ensured effective communication between firmware, software, and mechanical teams.
-            </div>
-          </li>
+          <li><a href="experience/robotic-arm.html" class="exp-link">Robotic Arm (4-DOF)</a></li>
         </ul>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
-    <p>© 2025 Chen-Yu Chiang | <a href="mailto:chenyu@email.com">Contact Me</a></p>
+    <p>© 2025 Chen-Yu Chiang | <a href="mailto:chenyu@email.com">Contact</a></p>
   </footer>
-
-  <!-- Script for expand/collapse -->
-  <script>
-    const buttons = document.querySelectorAll('.exp-btn');
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.classList.toggle('active');
-        const content = btn.nextElementSibling;
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      });
-    });
-  </script>
 </body>
 </html>
