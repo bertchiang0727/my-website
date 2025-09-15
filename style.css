@@ -75,6 +75,28 @@ body {
   border-radius: 8px;   
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+.zoom-img {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.zoom-img:hover {
+  transform: scale(1.03);
+}
+.img-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.img-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
 .profile-info h2 {
   margin-bottom: 8px;
   color: #1e3c72;
