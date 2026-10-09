@@ -5,7 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
-  <title>Bipedal Walking Control Using MPC | Chen-Yu Chiang</title>
+
+  <title>
+    Bipedal Balance Recovery Using MPC | Chen-Yu Chiang
+  </title>
+
   <link rel="stylesheet" href="../style.css">
 
   <style>
@@ -21,7 +25,7 @@
     .img-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       display: none;
       justify-content: center;
       align-items: center;
@@ -30,11 +34,11 @@
     }
 
     .img-overlay img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 92%;
+      max-height: 92%;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       object-fit: contain;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     figure {
@@ -49,27 +53,19 @@
       font-style: italic;
     }
 
-    .equation {
-      background: #f5f6fa;
-      padding: 20px;
-      text-align: center;
-      border-radius: 8px;
-      margin: 20px 0;
-      font-size: 1.2rem;
-      overflow-x: auto;
-    }
-
-    .project-video {
-      width: 100%;
-      max-width: 800px;
-      display: block;
-      margin: 20px auto;
-      border-radius: 8px;
-    }
-
     .project-img {
       max-width: 100%;
       height: auto;
+    }
+
+    .equation {
+      background: #f5f6fa;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+      border-radius: 8px;
+      font-size: 1.15rem;
+      overflow-x: auto;
     }
 
     .tags {
@@ -90,6 +86,23 @@
     .card p {
       line-height: 1.7;
     }
+
+    .project-list {
+      line-height: 1.9;
+      padding-left: 25px;
+    }
+
+    .result-highlight {
+      background: #f0f5fc;
+      border-left: 4px solid #2a5298;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+
+    .result-highlight p {
+      margin: 6px 0;
+    }
   </style>
 </head>
 
@@ -108,48 +121,67 @@
             <a href="../index.html#about">About</a>
           </li>
           <li>
-            <a href="../index.html#experience">Experience</a>
+            <a href="../index.html#experience">
+              Experience
+            </a>
           </li>
           <li>
-            <a href="../index.html#contact">Contact</a>
+            <a href="../index.html#contact">
+              Contact
+            </a>
           </li>
         </ul>
       </nav>
     </div>
   </header>
 
+
   <!-- Project Overview -->
   <section class="card">
     <h2>
-      Bipedal Walking Control Using
-      Model Predictive Control (MPC)
+      Balance Recovery of Bipedal Robots
+      Using MPC and Capture Point-Based
+      Footstep Adaptation
     </h2>
 
     <p>
-      This project investigates bipedal walking
-      control using the Linear Inverted Pendulum
-      Model (LIPM) and Model Predictive Control
-      (MPC). The objective is to develop a
-      simulation framework for predicting
-      center-of-mass motion and adapting future
-      footstep locations in response to external
-      disturbances.
+      This project investigates balance recovery
+      for bipedal robots under external
+      disturbances using Model Predictive
+      Control (MPC) and Capture Point (CP)-based
+      footstep adaptation.
 
-      By combining simplified robot dynamics
-      with predictive optimization, the project
-      explores how footstep adjustment can
-      contribute to balance recovery during
-      dynamic walking.
+      A one-dimensional Linear Inverted Pendulum
+      Model (LIPM) was used to represent the
+      robot's center-of-mass (CoM) dynamics
+      along the walking direction.
+
+      An MPC controller was implemented to
+      generate CoM and Zero Moment Point (ZMP)
+      trajectories while respecting the
+      support foot constraints.
+
+      To improve disturbance recovery,
+      a Capture Point-based footstep adaptation
+      strategy was incorporated to adjust
+      future footstep locations.
+
+      In simulation, the combined approach
+      successfully recovered balance after
+      an instantaneous 0.36 m/s increase
+      in CoM velocity.
     </p>
 
     <div class="tags">
       <span>Python</span>
       <span>Model Predictive Control</span>
-      <span>LIPM</span>
-      <span>Robotics</span>
+      <span>Linear Inverted Pendulum Model</span>
+      <span>Capture Point</span>
       <span>Footstep Adaptation</span>
+      <span>Robotics</span>
     </div>
   </section>
+
 
   <!-- Dynamic Modeling -->
   <section class="card">
@@ -157,228 +189,340 @@
 
     <p>
       The Linear Inverted Pendulum Model (LIPM)
-      is used to approximate the dynamics of
-      bipedal walking. By assuming a constant
-      center-of-mass (CoM) height and neglecting
-      angular momentum variations, the complex
-      dynamics of a humanoid robot can be
-      simplified into a linear model.
+      was adopted to simplify the dynamics
+      of bipedal walking.
 
-      The horizontal CoM motion is described
-      by the following equation:
+      The model assumes a constant
+      center-of-mass height, motion along
+      the horizontal walking direction,
+      and zero applied torque about
+      the lateral axis.
+
+      Under these assumptions, the
+      horizontal CoM acceleration is
+      related to the ZMP position by:
     </p>
 
     <div class="equation">
-      x&#776; = (g / z<sub>c</sub>)(x - p)
+      x&#776; = (g / h)(x - z<sub>x</sub>)
     </div>
 
     <p>
-      Here, x represents the horizontal CoM
-      position, z<sub>c</sub> is the constant
+      Here, x represents the horizontal
+      CoM position, h is the constant
       CoM height, g is gravitational
-      acceleration, and p is the Zero Moment
-      Point (ZMP).
+      acceleration, and z<sub>x</sub>
+      represents the ZMP position.
 
-      This simplified model provides the
-      foundation for predicting future CoM
-      trajectories and formulating the
-      walking control problem.
+      This simplified dynamic model
+      provides the basis for predicting
+      future CoM motion and designing
+      the MPC controller.
     </p>
 
-    <!-- Optional LIPM Diagram
-    <figure>
-      <img src="../images/mpc-lipm.png"
-           alt="Linear Inverted Pendulum Model"
-           class="project-img zoom-img">
-      <figcaption>
-        (Fig. 1) Linear Inverted Pendulum Model
-        used for bipedal walking dynamics
-      </figcaption>
-    </figure>
-    -->
+    <p>
+      The following simulation parameters
+      were used:
+    </p>
+
+    <ul class="project-list">
+      <li>CoM height: 0.8 m</li>
+      <li>Gravitational acceleration: 9.81 m/s²</li>
+      <li>Nominal step length: 0.25 m</li>
+      <li>Step duration: 0.8 s</li>
+      <li>Simulation timestep: 0.02 s</li>
+      <li>Total simulation time: 8.0 s</li>
+    </ul>
   </section>
+
 
   <!-- MPC Controller -->
   <section class="card">
     <h3>Model Predictive Control Design</h3>
 
     <p>
-      Model Predictive Control (MPC) is applied
-      to predict future robot motion over a
-      finite prediction horizon. At each control
-      step, an optimization problem is formulated
-      using the system dynamics, desired walking
-      trajectory, and balance-related constraints.
+      Model Predictive Control (MPC) was
+      implemented to predict future
+      center-of-mass motion and determine
+      the ZMP control sequence over
+      a finite prediction horizon.
 
-      The controller evaluates predicted motion
-      and determines control actions that
-      improve trajectory tracking while
-      considering future walking behavior.
+      At each simulation timestep,
+      the controller evaluates the
+      predicted system behavior using
+      the LIPM dynamics and the
+      planned support foot positions.
 
-      The optimization is repeatedly updated
-      as new system states become available,
-      allowing the controller to respond to
-      changes during walking.
+      A cost function was designed
+      to penalize deviations of the
+      CoM and ZMP from the support
+      foot location:
     </p>
 
-    <!-- Optional MPC Diagram
-    <figure>
-      <img src="../images/mpc-controller.png"
-           alt="MPC Control Framework"
-           class="project-img zoom-img">
-      <figcaption>
-        (Fig. 2) Model Predictive Control
-        framework for bipedal walking
-      </figcaption>
-    </figure>
-    -->
-  </section>
-
-  <!-- External Disturbance -->
-  <section class="card">
-    <h3>External Disturbance Simulation</h3>
+    <div class="equation">
+      J<sub>i</sub> =
+      Q(x<sub>i</sub> -
+      x<sub>support,i</sub>)²
+      +
+      R(z<sub>x,i</sub> -
+      x<sub>support,i</sub>)²
+    </div>
 
     <p>
-      To investigate the robustness of the
-      walking controller, an external disturbance
-      is introduced during the simulated walking
-      process.
+      The first term penalizes the
+      distance between the CoM and
+      the supporting foot, while the
+      second term penalizes the
+      distance between the ZMP and
+      the supporting foot.
 
-      The disturbance affects the robot's
-      center-of-mass motion and causes deviations
-      from the nominal walking trajectory.
+      The optimization also considers
+      the allowable ZMP region
+      associated with foot support.
 
-      The resulting motion is analyzed to
-      understand how external forces influence
-      balance and how predictive control can
-      support disturbance recovery.
+      The first optimized ZMP input
+      is applied to the system,
+      and the optimization is
+      repeated at the next timestep.
+
+      This receding-horizon approach
+      allows the controller to update
+      its response as the robot's
+      state changes during walking.
     </p>
 
-    <!-- Optional Disturbance Plot
     <figure>
-      <img src="../images/mpc-disturbance.png"
-           alt="External Disturbance Response"
-           class="project-img zoom-img">
+      <img
+        src="../images/mpc-basic-walking.png"
+        alt="Basic MPC Walking Simulation"
+        class="project-img zoom-img">
+
       <figcaption>
-        (Fig. 3) Center-of-mass response
-        under an external disturbance
+        (Fig. 1) Nominal walking simulation
+        using MPC, showing CoM, Capture Point,
+        ZMP, and support foot trajectories
+        without external disturbances.
       </figcaption>
     </figure>
-    -->
   </section>
 
-  <!-- Footstep Adaptation -->
+
+  <!-- Capture Point Adaptation -->
   <section class="card">
-    <h3>Adaptive Footstep Planning</h3>
+    <h3>Capture Point-Based Footstep Adaptation</h3>
 
     <p>
-      Adaptive footstep planning is investigated
-      as a balance recovery strategy for
-      bipedal walking.
-
-      Instead of relying exclusively on
-      predefined footstep locations, the
-      walking control framework considers
-      adjustments to future foot placement
-      based on the predicted motion of
-      the robot.
-
-      Following an external disturbance,
-      modifying the upcoming footstep
-      locations can help compensate for
-      changes in center-of-mass position
+      The Capture Point (CP) provides
+      a balance-related measure based
+      on the current CoM position
       and velocity.
 
-      This approach highlights the
-      relationship between predictive
-      control, dynamic stability, and
-      footstep planning.
+      It represents the location
+      where the robot would need
+      to step to bring its motion
+      toward a balanced state
+      under the simplified model.
+
+      The Capture Point is defined as:
     </p>
 
-    <!-- Optional Footstep Plot
-    <figure>
-      <img src="../images/mpc-footstep.png"
-           alt="Adaptive Footstep Planning"
-           class="project-img zoom-img">
-      <figcaption>
-        (Fig. 4) Adaptive footstep locations
-        in response to external disturbances
-      </figcaption>
-    </figure>
-    -->
-  </section>
-
-  <!-- Simulation Results -->
-  <section class="card">
-    <h3>Simulation Results</h3>
+    <div class="equation">
+      &xi; = x + x&#775; / &omega;
+    </div>
 
     <p>
-      Python-based numerical simulations are
-      used to investigate center-of-mass
-      trajectories, disturbance responses,
-      and adaptive footstep planning.
-
-      The analysis focuses on the relationship
-      between the predicted CoM motion,
-      footstep locations, and the robot's
-      response to external disturbances.
-
-      Simulation plots can be used to
-      compare nominal walking behavior
-      with disturbance-affected motion
-      and evaluate the effect of footstep
-      adaptation.
+      Here, &xi; is the Capture Point,
+      x is the CoM position,
+      x&#775; is the CoM velocity,
+      and &omega; = &radic;(g/h)
+      is the natural frequency
+      of the inverted pendulum.
     </p>
 
-    <!-- CoM Trajectory
-    <figure>
-      <img src="../images/mpc-com-trajectory.png"
-           alt="CoM Trajectory"
-           class="project-img zoom-img">
-      <figcaption>
-        (Fig. 5) Center-of-mass trajectory
-        during bipedal walking
-      </figcaption>
-    </figure>
-    -->
+    <p>
+      When an external disturbance
+      changes the CoM velocity,
+      the Capture Point shifts
+      away from its nominal position.
 
-    <!-- Footstep Adaptation Results
-    <figure>
-      <img src="../images/mpc-footstep-results.png"
-           alt="Footstep Adaptation Results"
-           class="project-img zoom-img">
-      <figcaption>
-        (Fig. 6) Footstep locations before
-        and after disturbance adaptation
-      </figcaption>
-    </figure>
-    -->
+      To estimate the required
+      recovery step, the Capture
+      Point at the next stepping
+      time is predicted under
+      a constant-ZMP assumption:
+    </p>
 
-    <!-- Simulation Animation
-    <video class="project-video"
-           controls preload="metadata">
-      <source
-        src="../videos/mpc-simulation.mp4"
-        type="video/mp4">
-      Your browser does not support HTML5 video.
-    </video>
-    -->
+    <div class="equation">
+      &xi;(t + &Delta;t) =
+      z<sub>x</sub> +
+      (&xi;(t) - z<sub>x</sub>)
+      e<sup>&omega;&Delta;t</sup>
+    </div>
+
+    <p>
+      The predicted Capture Point
+      is compared with the nominal
+      next footstep location.
+
+      The resulting Capture Point
+      error determines the footstep
+      adjustment, which is limited
+      by the allowable stepping range.
+
+      When an adjustment is required,
+      the next and subsequent
+      planned footsteps are shifted.
+
+      MPC then recalculates the ZMP
+      trajectory using the updated
+      support foot positions.
+    </p>
   </section>
 
-  <!-- Tools -->
+
+  <!-- Successful Balance Recovery -->
+  <section class="card">
+    <h3>
+      Simulation Results -
+      Successful Balance Recovery
+    </h3>
+
+    <p>
+      The combined MPC and Capture
+      Point-based footstep adaptation
+      approach was evaluated through
+      numerical simulation.
+
+      An external disturbance was
+      modeled as an instantaneous
+      increase of 0.36 m/s in the
+      robot's CoM velocity at
+      t = 4.2 seconds.
+
+      Following the disturbance,
+      the Capture Point shifted
+      away from the nominal
+      walking trajectory.
+
+      The footstep adaptation
+      algorithm adjusted the
+      future footstep plan by
+      0.143 m.
+
+      Using the updated footstep
+      positions, MPC recomputed
+      the ZMP trajectory to
+      accommodate the changed
+      support locations.
+
+      The resulting CoM and
+      Capture Point trajectories
+      remained bounded in the
+      simulation, demonstrating
+      successful balance recovery.
+    </p>
+
+    <div class="result-highlight">
+      <p>
+        <strong>Velocity disturbance:</strong>
+        0.36 m/s
+      </p>
+
+      <p>
+        <strong>Disturbance time:</strong>
+        4.2 s
+      </p>
+
+      <p>
+        <strong>Footstep adjustment:</strong>
+        0.143 m
+      </p>
+
+      <p>
+        <strong>Simulation result:</strong>
+        Successful balance recovery
+      </p>
+    </div>
+
+    <figure>
+      <img
+        src="../images/mpc-com-trajectory.png"
+        alt="MPC Balance Recovery Under Disturbance"
+        class="project-img zoom-img">
+
+      <figcaption>
+        (Fig. 2) MPC-based balance recovery
+        after a 0.36 m/s increase in
+        CoM velocity at t = 4.2 s.
+        The CoM and Capture Point
+        remain bounded following
+        the disturbance.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <img
+        src="../images/mpc-footstep-results.png"
+        alt="Capture Point-Based Footstep Adaptation"
+        class="project-img zoom-img">
+
+      <figcaption>
+        (Fig. 3) Top view of the
+        adapted footstep trajectory
+        following the disturbance.
+        The future footstep plan
+        was shifted by 0.143 m.
+      </figcaption>
+    </figure>
+  </section>
+
+
+  <!-- Conclusion -->
+  <section class="card">
+    <h3>Conclusion</h3>
+
+    <p>
+      This project demonstrates the
+      effectiveness of combining
+      Model Predictive Control with
+      Capture Point-based footstep
+      adaptation for balance recovery
+      in a simplified one-dimensional
+      bipedal walking model.
+
+      By predicting future CoM
+      motion and adjusting planned
+      footstep locations, the
+      controller successfully
+      recovered balance following
+      a 0.36 m/s velocity disturbance.
+
+      The results demonstrate
+      how predictive control
+      and adaptive footstep
+      planning can be combined
+      to improve disturbance
+      recovery during simulated
+      bipedal walking.
+    </p>
+  </section>
+
+
+  <!-- Tools and Technologies -->
   <section class="card">
     <h3>Tools and Technologies</h3>
 
-    <ul>
+    <ul class="project-list">
       <li>Python Programming</li>
-      <li>Linear Inverted Pendulum Model (LIPM)</li>
       <li>Model Predictive Control (MPC)</li>
-      <li>Numerical Simulation</li>
+      <li>Linear Inverted Pendulum Model (LIPM)</li>
+      <li>Capture Point-Based Footstep Adaptation</li>
       <li>Dynamic System Modeling</li>
-      <li>Adaptive Footstep Planning</li>
-      <li>Disturbance Response Analysis</li>
+      <li>Numerical Optimization</li>
+      <li>Disturbance Recovery Simulation</li>
     </ul>
   </section>
+
 
   <!-- Navigation -->
   <section class="card">
@@ -389,15 +533,20 @@
     </p>
   </section>
 
+
   <!-- Footer -->
   <footer>
-    <p>© 2026 Chen-Yu Chiang | Portfolio</p>
+    <p>
+      © 2026 Chen-Yu Chiang | Portfolio
+    </p>
   </footer>
+
 
   <!-- Image Zoom Overlay -->
   <div class="img-overlay" id="imgOverlay">
     <img src="" alt="Full-size project image">
   </div>
+
 
   <!-- JavaScript for Image Zoom -->
   <script>
