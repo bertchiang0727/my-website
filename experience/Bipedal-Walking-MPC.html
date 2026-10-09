@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Bipedal Walking Control Using MPC | Chen-Yu Chiang</title>
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .zoom-img {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .zoom-img:hover {
+      transform: scale(1.03);
+    }
+
+    .img-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: zoom-out;
+    }
+
+    .img-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      object-fit: contain;
+    }
+
+    figure {
+      margin: 1.5rem auto;
+      text-align: center;
+    }
+
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      font-style: italic;
+    }
+
+    .equation {
+      background: #f5f6fa;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 1.2rem;
+      overflow-x: auto;
+    }
+
+    .project-video {
+      width: 100%;
+      max-width: 800px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 8px;
+    }
+
+    .project-img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .tags span {
+      background: #eaf1fa;
+      color: #1e3c72;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .card p {
+      line-height: 1.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="container">
+      <h1 class="logo">
+        Chen-Yu Chiang (Research Portfolio)
+      </h1>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="../index.html#about">About</a>
+          </li>
+          <li>
+            <a href="../index.html#experience">Experience</a>
+          </li>
+          <li>
+            <a href="../index.html#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Project Overview -->
+  <section class="card">
+    <h2>
+      Bipedal Walking Control Using
+      Model Predictive Control (MPC)
+    </h2>
+
+    <p>
+      This project investigates bipedal walking
+      control using the Linear Inverted Pendulum
+      Model (LIPM) and Model Predictive Control
+      (MPC). The objective is to develop a
+      simulation framework for predicting
+      center-of-mass motion and adapting future
+      footstep locations in response to external
+      disturbances.
+
+      By combining simplified robot dynamics
+      with predictive optimization, the project
+      explores how footstep adjustment can
+      contribute to balance recovery during
+      dynamic walking.
+    </p>
+
+    <div class="tags">
+      <span>Python</span>
+      <span>Model Predictive Control</span>
+      <span>LIPM</span>
+      <span>Robotics</span>
+      <span>Footstep Adaptation</span>
+    </div>
+  </section>
+
+  <!-- Dynamic Modeling -->
+  <section class="card">
+    <h3>Dynamic Modeling - LIPM</h3>
+
+    <p>
+      The Linear Inverted Pendulum Model (LIPM)
+      is used to approximate the dynamics of
+      bipedal walking. By assuming a constant
+      center-of-mass (CoM) height and neglecting
+      angular momentum variations, the complex
+      dynamics of a humanoid robot can be
+      simplified into a linear model.
+
+      The horizontal CoM motion is described
+      by the following equation:
+    </p>
+
+    <div class="equation">
+      x&#776; = (g / z<sub>c</sub>)(x - p)
+    </div>
+
+    <p>
+      Here, x represents the horizontal CoM
+      position, z<sub>c</sub> is the constant
+      CoM height, g is gravitational
+      acceleration, and p is the Zero Moment
+      Point (ZMP).
+
+      This simplified model provides the
+      foundation for predicting future CoM
+      trajectories and formulating the
+      walking control problem.
+    </p>
+
+    <!-- Optional LIPM Diagram
+    <figure>
+      <img src="../images/mpc-lipm.png"
+           alt="Linear Inverted Pendulum Model"
+           class="project-img zoom-img">
+      <figcaption>
+        (Fig. 1) Linear Inverted Pendulum Model
+        used for bipedal walking dynamics
+      </figcaption>
+    </figure>
+    -->
+  </section>
+
+  <!-- MPC Controller -->
+  <section class="card">
+    <h3>Model Predictive Control Design</h3>
+
+    <p>
+      Model Predictive Control (MPC) is applied
+      to predict future robot motion over a
+      finite prediction horizon. At each control
+      step, an optimization problem is formulated
+      using the system dynamics, desired walking
+      trajectory, and balance-related constraints.
+
+      The controller evaluates predicted motion
+      and determines control actions that
+      improve trajectory tracking while
+      considering future walking behavior.
+
+      The optimization is repeatedly updated
+      as new system states become available,
+      allowing the controller to respond to
+      changes during walking.
+    </p>
+
+    <!-- Optional MPC Diagram
+    <figure>
+      <img src="../images/mpc-controller.png"
+           alt="MPC Control Framework"
+           class="project-img zoom-img">
+      <figcaption>
+        (Fig. 2) Model Predictive Control
+        framework for bipedal walking
+      </figcaption>
+    </figure>
+    -->
+  </section>
+
+  <!-- External Disturbance -->
+  <section class="card">
+    <h3>External Disturbance Simulation</h3>
+
+    <p>
+      To investigate the robustness of the
+      walking controller, an external disturbance
+      is introduced during the simulated walking
+      process.
+
+      The disturbance affects the robot's
+      center-of-mass motion and causes deviations
+      from the nominal walking trajectory.
+
+      The resulting motion is analyzed to
+      understand how external forces influence
+      balance and how predictive control can
+      support disturbance recovery.
+    </p>
+
+    <!-- Optional Disturbance Plot
+    <figure>
+      <img src="../images/mpc-disturbance.png"
+           alt="External Disturbance Response"
+           class="project-img zoom-img">
+      <figcaption>
+        (Fig. 3) Center-of-mass response
+        under an external disturbance
+      </figcaption>
+    </figure>
+    -->
+  </section>
+
+  <!-- Footstep Adaptation -->
+  <section class="card">
+    <h3>Adaptive Footstep Planning</h3>
+
+    <p>
+      Adaptive footstep planning is investigated
+      as a balance recovery strategy for
+      bipedal walking.
+
+      Instead of relying exclusively on
+      predefined footstep locations, the
+      walking control framework considers
+      adjustments to future foot placement
+      based on the predicted motion of
+      the robot.
+
+      Following an external disturbance,
+      modifying the upcoming footstep
+      locations can help compensate for
+      changes in center-of-mass position
+      and velocity.
+
+      This approach highlights the
+      relationship between predictive
+      control, dynamic stability, and
+      footstep planning.
+    </p>
+
+    <!-- Optional Footstep Plot
+    <figure>
+      <img src="../images/mpc-footstep.png"
+           alt="Adaptive Footstep Planning"
+           class="project-img zoom-img">
+      <figcaption>
+        (Fig. 4) Adaptive footstep locations
+        in response to external disturbances
+      </figcaption>
+    </figure>
+    -->
+  </section>
+
+  <!-- Simulation Results -->
+  <section class="card">
+    <h3>Simulation Results</h3>
+
+    <p>
+      Python-based numerical simulations are
+      used to investigate center-of-mass
+      trajectories, disturbance responses,
+      and adaptive footstep planning.
+
+      The analysis focuses on the relationship
+      between the predicted CoM motion,
+      footstep locations, and the robot's
+      response to external disturbances.
+
+      Simulation plots can be used to
+      compare nominal walking behavior
+      with disturbance-affected motion
+      and evaluate the effect of footstep
+      adaptation.
+    </p>
+
+    <!-- CoM Trajectory
+    <figure>
+      <img src="../images/mpc-com-trajectory.png"
+           alt="CoM Trajectory"
+           class="project-img zoom-img">
+      <figcaption>
+        (Fig. 5) Center-of-mass trajectory
+        during bipedal walking
+      </figcaption>
+    </figure>
+    -->
+
+    <!-- Footstep Adaptation Results
+    <figure>
+      <img src="../images/mpc-footstep-results.png"
+           alt="Footstep Adaptation Results"
+           class="project-img zoom-img">
+      <figcaption>
+        (Fig. 6) Footstep locations before
+        and after disturbance adaptation
+      </figcaption>
+    </figure>
+    -->
+
+    <!-- Simulation Animation
+    <video class="project-video"
+           controls preload="metadata">
+      <source
+        src="../videos/mpc-simulation.mp4"
+        type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+    -->
+  </section>
+
+  <!-- Tools -->
+  <section class="card">
+    <h3>Tools and Technologies</h3>
+
+    <ul>
+      <li>Python Programming</li>
+      <li>Linear Inverted Pendulum Model (LIPM)</li>
+      <li>Model Predictive Control (MPC)</li>
+      <li>Numerical Simulation</li>
+      <li>Dynamic System Modeling</li>
+      <li>Adaptive Footstep Planning</li>
+      <li>Disturbance Response Analysis</li>
+    </ul>
+  </section>
+
+  <!-- Navigation -->
+  <section class="card">
+    <p>
+      <a href="../index.html">
+        ← Back to Home
+      </a>
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Chen-Yu Chiang | Portfolio</p>
+  </footer>
+
+  <!-- Image Zoom Overlay -->
+  <div class="img-overlay" id="imgOverlay">
+    <img src="" alt="Full-size project image">
+  </div>
+
+  <!-- JavaScript for Image Zoom -->
+  <script>
+    const overlay =
+      document.getElementById("imgOverlay");
+
+    const overlayImg =
+      overlay.querySelector("img");
+
+    document.querySelectorAll(".zoom-img")
+      .forEach(img => {
+        img.addEventListener("click", () => {
+          overlayImg.src = img.src;
+          overlayImg.alt = img.alt;
+          overlay.style.display = "flex";
+        });
+      });
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+      overlayImg.removeAttribute("src");
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        overlay.style.display = "none";
+        overlayImg.removeAttribute("src");
+      }
+    });
+  </script>
+
+</body>
+</html>
